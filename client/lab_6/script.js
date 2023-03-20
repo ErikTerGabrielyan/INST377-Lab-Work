@@ -10,9 +10,20 @@
     Under this comment place any utility functions you need - like an inclusive random number selector
     https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 */
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
 function injectHTML(list) {
   console.log('fired injectHTML');
+  const target = document.querySelector('.restaurant_list');
+  target.innerHTML = '';
+  list.forEach((item) => {
+    const str = '<li>${item.name}</li>';
+    target.innerHTML += str;
+  })
   /*
   ## JS and HTML Injection
     There are a bunch of methods to inject text or HTML into a document using JS
@@ -31,6 +42,11 @@ function injectHTML(list) {
 
 function processRestaurants(list) {
   console.log('fired restaurants list');
+  const range = [...Array(15).keys()];
+  return newArray = range.map((item) => {
+    const index = getRandomIntInclusive(0, list.length - 1);
+    return list[index];
+  })
 
   /*
     ## Process Data Separately From Injecting It
@@ -75,16 +91,16 @@ async function mainEvent() {
   /*
     Below this comment, we log out a table of all the results:
   */
-  console.table(arrayFromJson);
+  console.table(arrayFromJson.data);
 
   // As a next step, log the first entry from your returned array of data.
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
-  console.log(`replace me with the first entry`);
+  console.log(arrayFromJson.data[0]);
 
   // Now write a log using string interpolation - log out the name and category of your first returned entry (index [0]) to the browser console
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors
-  console.log(`replace me with the name and category of the first entry`);
+  console.log(`${arrayFromJson.data[0].name} ${arrayFromJson.data[0].category}`);
 
   // This IF statement ensures we can't do anything if we don't have information yet
   if (arrayFromJson?.length > 0) { // the question mark in this means "if this is set at all"
@@ -95,9 +111,9 @@ async function mainEvent() {
     form.addEventListener('submit', (submitEvent) => {
       // Using .preventDefault, stop the page from refreshing when a submit event happens
       // https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
-
+      submitEvent.preventDefault();
       // This constant will contain the value of your 15-restaurant collection when it processes
-      const restaurantList = processRestaurants(arrayFromJson);
+      const restaurantList = processRestaurants(arrayFromJson.data);
 
       // And this function call will perform the "side effect" of injecting the HTML list for you
       injectHTML(restaurantList);
