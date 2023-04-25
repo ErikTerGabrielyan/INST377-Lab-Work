@@ -1,16 +1,19 @@
 /* CSS instructions for Lab 5 */
 /* Bring in your successful CSS from week 4 */
-/*
-    Add a flexbox class that will keep two buttons nicely styled next to one another
-    under your HTML form and input field
- */
+/* In your #map rule, set map to display:none; to temporarily hide your map box */
 
 /*
 Form Styles
 */
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
+
+/* 
+  These rules apply to actual HTML elements with no labelling!
+  So: they style the tags directly
+*/
+
 html {
   background-color: #fff;
   font-size: 16px;
@@ -143,8 +146,6 @@ form {
   flex: 1 2 auto;
   margin: 1rem;
   align-items: center;
-  max-width: 850px;
-  justify-content: center;
   display: flex;
   flex-direction: column;
 }
@@ -161,8 +162,8 @@ form {
   background-color: rgba(255, 255, 255, 0.8);
   font-size: 1.2rem;
   font-weight: 600;
-  justify-content: flex-end;
   flex-direction: column;
+  bottom: 0;
 }
 
 .footer a {
@@ -275,6 +276,9 @@ div.carousel {
   /* Pick a good background colour for your hover pseudoclass */
 }
 
+.main_form{
+  /* To prevent error message */
+}
 
 form input {
     /* This is a hack to make sure our boxes line up with one another nicely */
@@ -301,3 +305,37 @@ form input {
   }
 
 /* How To Write A Media Query For Small Screens */
+
+@media only screen and (max-width: 736px){
+    /* Rules in here will only apply when a screen is the correct size */
+    /* check it out by using your developer tools to shrink your screen-size */
+    .container {
+      background-color: rgba(176, 233, 255, 0.65);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .box {
+      width: 100%;
+      width: fill-available;
+      align-items: flex-start;  
+      justify-content: flex-start;
+    }
+
+    .left_section {
+      background-color: rgba(170, 178, 255, 0.8);
+      flex: 0 1 auto;
+      margin: 1rem;
+      padding: 1.5rem;
+    }
+
+    .right_section {
+      background-color: #6c9bffb3;
+      flex: 1 2 auto;
+      margin: 1rem;
+      align-items: start;
+      display: flex;
+      flex-direction: column;
+    }
+}
