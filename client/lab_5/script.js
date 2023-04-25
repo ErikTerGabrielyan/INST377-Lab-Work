@@ -9,20 +9,46 @@ function filterList(list, query) {
     const lowerCaseQuery = query.toLowerCase();
     return lowerCaseName.includes(lowerCaseQuery);
   })
+}
 
-  /*
-    Using the .filter array method,
-    return a list that is filtered by comparing the item name in lower case
-    to the query in lower case
-    Ask the TAs if you need help with this
-  */
+function getRandomIntInclusive(min, max){
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function injectHTML(list){
+  console.log("fired injectHTML")
+  const target = document.querySelector('#restaurant_list');
+  target.innerHTML = '';
+  list.forEach((item) => {
+    const str = '<li>${item.name}</li>';
+    target.innerHTML += str
+  })
+}
+
+function cutRestaurantList(){
+  console.log('fired cut list')
+  const range = [...Array(15).keys()];
+  return newArray = range.map((item) => {
+    const index = getRandomIntInclusive(0, list.length - 1);
+    return list[index]
+  })
 }
 
 async function mainEvent() { // the async keyword means we can make API requests
   const form = document.querySelector('.main_form'); // This class name needs to be set on your form before you can listen for an event on it
-  const filter = document.querySelector('.filter_button');
+  const filter = document.querySelector('#filter_button');
+  const loadData = document.querySelector('#data_load')
+  const generateListButton = document.querySelector('#generate')
+  const loadAnimation = document.querySelector('#data_load_animation')
+  loadAnimation.style.display = 'none';
+  
   let currentList = [];
-  form.addEventListener('submit', async (submitEvent) => { // async has to be declared on every function that needs to "await" something
+  form.addEventListener('click', async (submitEvent) => { // async has to be declared on every function that needs to "await" something
+    console.log('Loading data');
+    loadAnimation.style.display = 'inline-block';
+    
     submitEvent.preventDefault(); // This prevents your page from going to http://localhost:3000/api even if your form still has an action set on it
     console.log('form submission'); // this is substituting for a "breakpoint"
 
