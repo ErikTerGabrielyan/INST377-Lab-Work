@@ -6,10 +6,10 @@ function getRandomIntInclusive(min, max) {
 
 function injectHTML(list) {
   console.log('fired injectHTML');
-  const target = document.querySelector('.restaurant_list');
+  const target = document.querySelector('#restaurant_list');
   target.innerHTML = '';
   list.forEach((item) => {
-    const str = '<li>${item.name}</li>';
+    const str = `<li>${item.name}</li>`;
     target.innerHTML += str;
   })
 }
@@ -32,24 +32,17 @@ function processRestaurants(list) {
 }
 
 async function mainEvent() {
-  /*
-    ## Main Event
-      Separating your main programming from your side functions will help you organize your thoughts
-      When you're not working in a heavily-commented "learning" file, this also is more legible
-      If you separate your work, when one piece is complete, you can save it and trust it
-  */
 
-  // the async keyword means we can make API requests
-  const form = document.querySelector('.main_form'); // get your main form so you can do JS with it
-  const filterButton = document.querySelector('#filter_button'); // get a reference to your submit button
+  const form = document.querySelector('.main_form'); 
+  const filterButton = document.querySelector('#filter'); 
   const generateButton = document.querySelector('#generate_button');
-  const loadAnimation = document.querySelector('.lds-ellipsis');
-  filterButton.style.display = 'none'; // let your submit button disappear
+  const loadDataButton = document.querySelector('#data_load');
+  const loadAnimation = document.querySelector('#data_load_animation');
+  loadAnimation.style.display = 'none'; // let your submit button disappear
 
   let currentList = [];
 
   loadDataButton.addEventListener("click", async (submitEvent) => {
-    submitEvent.preventDefault();
     console.log("loading data");
     loadAnimation.style.display = "inline-block";
     const results = await fetch('https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json');
@@ -72,7 +65,7 @@ async function mainEvent() {
     injectHTML(newList);
   });
 
-  generateListButton.addEventListener("click", (event) =>{
+  generateButton.addEventListener("click", (event) =>{
     console.log("generate new list");
     restaurantList = processRestaurants(currentList);
     console.log(restaurantList);
