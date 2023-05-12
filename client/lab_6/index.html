@@ -27,13 +27,13 @@
                 <form action="https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json" class="box main_form">
                     <label for="resto">Restaurant Name</label>
                     <input type="text" id="resto" name="resto"/>
-                    <button type="submit">Load Data</button>
-                    <button type="button" class="filter_button">Filter Data</button>
+                    <button type="button" id="filter_button">Filter Data</button>
+                    <button type="button" id="generate_button">Generate List</button>
                 </form>
             </div>
             <div class="box right_section">
                 <h2>Local Restaurants</h2>
-                <div class="box">
+                <div class="box" id="restaurant_list">
                     A list of local restaurants from an API
                 </div>
                 <div class="lds-ellipsis" id="data_load_animation"></div></div><div></div><div></div><div></div></div>
