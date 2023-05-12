@@ -32,6 +32,11 @@
   background-color: rgb(182, 226, 255);
   }
   
+  #map {
+    width: 450px;
+    height: 360px;
+    margin-bottom: 1rem;
+  }
   
   a {
   display: inline-block;

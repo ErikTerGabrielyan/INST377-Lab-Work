@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Erik Ter-Gabrielyan Lab 8</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 </head>
 <body>
     <div class="wrapper">
@@ -28,6 +32,7 @@
             </div>
             <div class="box right_section">
                 <h2>Local Restaurants</h2>
+                <div class="box" id="map"></div>
                 <div class="box" id="restaurant_list">
                     A list of local restaurants from an API
                 </div>
